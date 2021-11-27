@@ -8,14 +8,17 @@ module.exports = {
     mode: "development",
     devtool: "inline-source-map",
     devServer: {
-        static : {
-            directory : path.join(__dirname, "public/")
-          }
+        static: {
+            directory: path.join(__dirname, "public/")
+        }
     },
     module: {
-        rules: [{
-            test: /\.css$/i,
-            use: ["style-loader", "css-loader"], //任何以css结尾的文件用css-loader读到css文件、然后再放到style标签中。放入head里
-        }, ],
+        rules: [
+            ...base.module.rules,
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"], //任何以css结尾的文件用css-loader读到css文件、然后再放到style标签中。放入head里
+            }
+        ]
     },
 };

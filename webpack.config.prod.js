@@ -11,20 +11,23 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].[contenthash].css",
             chunkFilename: "[id].[contenthash].css",
-            ignoreOrder: false, 
+            ignoreOrder: false,
         })
     ],
     module: {
-        rules: [{
-            test: /\.css$/i,
-            use: [{
-                    loader: MiniCssExtractPlugin.loader,
-                    options: {
-                        publicPath: "../",
+        rules: [
+            ...base.module.rules,
+            {
+                test: /\.css$/i,
+                use: [{
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: "../",
+                        },
                     },
-                },
-                "css-loader",
-            ],
-        }, ],
+                    "css-loader",
+                ],
+            },
+        ],
     },
 };
